@@ -139,13 +139,17 @@ s9174_5 = select(user_table).with_for_update(of=user_table.c.id)
 s9174_6 = select(user_table).with_for_update(
     of=[user_table.c.id, user_table.c.email]
 )
+s9174_7 = select(User).with_for_update(of=[User])
+s9174_8 = select(user_table).with_for_update(of=[user_table])
 
 # with_for_update but for query
 session = Session()
 user = session.query(User).with_for_update(of=User)
 user = session.query(User).with_for_update(of=User.id)
 user = session.query(User).with_for_update(of=[User.id, User.email])
+user = session.query(User).with_for_update(of=[User])
 user = session.query(user_table).with_for_update(of=user_table)
+user = session.query(user_table).with_for_update(of=[user_table])
 user = session.query(user_table).with_for_update(of=user_table.c.id)
 user = session.query(user_table).with_for_update(
     of=[user_table.c.id, user_table.c.email]
